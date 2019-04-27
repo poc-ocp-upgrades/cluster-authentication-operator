@@ -3,13 +3,14 @@ package operator2
 import (
 	"strconv"
 	"testing"
-
 	"k8s.io/api/core/v1"
 )
 
 func TestRandomString(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for size := 0; size < 1<<10+1; size++ {
-		size := size // capture range variable
+		size := size
 		t.Run(strconv.FormatInt(int64(size), 10), func(t *testing.T) {
 			t.Parallel()
 			if got := randomString(size); len(got) != size {
@@ -18,8 +19,9 @@ func TestRandomString(t *testing.T) {
 		})
 	}
 }
-
 func TestIsValidSessionSecret(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s, err := newSessionSecretsJSON()
 	if err != nil {
 		t.Errorf("error generating new session secret")
@@ -37,12 +39,8 @@ func TestIsValidSessionSecret(t *testing.T) {
 		}
 	}
 }
-
 func secret(sessionSecret []byte) *v1.Secret {
-	return &v1.Secret{
-		ObjectMeta: defaultMeta(),
-		Data: map[string][]byte{
-			sessionNameAndKey: sessionSecret,
-		},
-	}
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	return &v1.Secret{ObjectMeta: defaultMeta(), Data: map[string][]byte{sessionNameAndKey: sessionSecret}}
 }
