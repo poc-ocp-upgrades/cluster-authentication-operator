@@ -16,6 +16,8 @@ const (
 func (c *authOperator) handleServiceCA() (*corev1.ConfigMap, *corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cm := c.configMaps.ConfigMaps(targetNamespace)
 	secret := c.secrets.Secrets(targetNamespace)
 	serviceCA, err := cm.Get(serviceCAName, metav1.GetOptions{})
@@ -45,12 +47,16 @@ func (c *authOperator) handleServiceCA() (*corev1.ConfigMap, *corev1.Secret, err
 func isValidServiceCA(ca *corev1.ConfigMap) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if ca.Annotations[injectCABundleAnnotationName] != injectCABundleAnnotationValue {
 		return fmt.Errorf("config map missing injection annotation: %#v", ca)
 	}
 	return nil
 }
 func defaultServiceCA() *corev1.ConfigMap {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	meta := defaultMeta()

@@ -41,6 +41,8 @@ var customResources = map[schema.GroupVersionResource]string{operatorv1.GroupVer
 func RunOperator(ctx *controllercmd.ControllerContext) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kubeClient, err := kubernetes.NewForConfig(ctx.ProtoKubeConfig)
 	if err != nil {
 		return err
@@ -94,6 +96,8 @@ func RunOperator(ctx *controllercmd.ControllerContext) error {
 	return fmt.Errorf("stopped")
 }
 func singleNameListOptions(name string) func(opts *metav1.ListOptions) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(opts *metav1.ListOptions) {

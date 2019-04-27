@@ -17,6 +17,8 @@ import (
 func defaultDeployment(operatorConfig *operatorv1.Authentication, syncData *configSyncData, routerSecret *corev1.Secret, operatorDeployment *appsv1.Deployment, resourceVersions ...string) *appsv1.Deployment {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	replicas := int32(2)
 	gracePeriod := int64(30)
 	var (
@@ -42,9 +44,13 @@ func defaultDeployment(operatorConfig *operatorv1.Authentication, syncData *conf
 func defaultProbe() *corev1.Probe {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &corev1.Probe{Handler: corev1.Handler{HTTPGet: &corev1.HTTPGetAction{Path: "/healthz", Port: intstr.FromInt(containerPort), Scheme: corev1.URISchemeHTTPS}}, TimeoutSeconds: 1, PeriodSeconds: 10, SuccessThreshold: 1, FailureThreshold: 3}
 }
 func livenessProbe() *corev1.Probe {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	probe := defaultProbe()
@@ -52,6 +58,8 @@ func livenessProbe() *corev1.Probe {
 	return probe
 }
 func toVolumesAndMounts(data map[string]sourceData, volumes []corev1.Volume, mounts []corev1.VolumeMount) ([]corev1.Volume, []corev1.VolumeMount) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	names := sets.StringKeySet(data).List()
@@ -62,6 +70,8 @@ func toVolumesAndMounts(data map[string]sourceData, volumes []corev1.Volume, mou
 	return volumes, mounts
 }
 func getLogLevel(logLevel operatorv1.LogLevel) int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch logLevel {
@@ -80,6 +90,8 @@ func getLogLevel(logLevel operatorv1.LogLevel) int {
 func getImagePullPolicy(operatorDeployment *appsv1.Deployment) corev1.PullPolicy {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	containers := operatorDeployment.Spec.Template.Spec.Containers
 	if len(containers) == 0 {
 		return corev1.PullIfNotPresent
@@ -95,6 +107,8 @@ type volume struct {
 }
 
 func (v *volume) split() (corev1.Volume, corev1.VolumeMount) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	vol := corev1.Volume{Name: v.name}

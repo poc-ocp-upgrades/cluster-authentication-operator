@@ -13,6 +13,8 @@ import (
 func (c *authOperator) handleConfigSync(data *configSyncData) ([]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	configMapClient := c.configMaps.ConfigMaps(targetNamespace)
 	secretClient := c.secrets.Secrets(targetNamespace)
 	configMaps, err := configMapClient.List(metav1.ListOptions{})
@@ -85,6 +87,8 @@ type sourceData struct {
 func newSourceDataIDPSecret(index int, secretName configv1.SecretNameReference, field, key string) (string, sourceData) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dest := getIDPName(index, field)
 	dirPath := getIDPPath(index, "secret", dest)
 	vol, mount, path := secretVolume(dirPath, dest, key)
@@ -92,6 +96,8 @@ func newSourceDataIDPSecret(index int, secretName configv1.SecretNameReference, 
 	return dest, ret
 }
 func newSourceDataIDPConfigMap(index int, configMap configv1.ConfigMapNameReference, field, key string) (string, sourceData) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	dest := getIDPName(index, field)
@@ -103,6 +109,8 @@ func newSourceDataIDPConfigMap(index int, configMap configv1.ConfigMapNameRefere
 func newSourceDataTemplateSecret(secretRef configv1.SecretNameReference, field, key string) (string, sourceData) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dest := getTemplateName(field)
 	dirPath := getTemplatePath("secret", dest)
 	vol, mount, path := secretVolume(dirPath, dest, key)
@@ -112,12 +120,16 @@ func newSourceDataTemplateSecret(secretRef configv1.SecretNameReference, field, 
 func newConfigSyncData() configSyncData {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	idpConfigMaps := map[string]sourceData{}
 	idpSecrets := map[string]sourceData{}
 	tplSecrets := map[string]sourceData{}
 	return configSyncData{idpConfigMaps: idpConfigMaps, idpSecrets: idpSecrets, tplSecrets: tplSecrets}
 }
 func (sd *configSyncData) addIDPSecret(index int, secretRef configv1.SecretNameReference, field, key string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(secretRef.Name) == 0 {
@@ -130,6 +142,8 @@ func (sd *configSyncData) addIDPSecret(index int, secretRef configv1.SecretNameR
 func (sd *configSyncData) addIDPConfigMap(index int, configMapRef configv1.ConfigMapNameReference, field, key string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(configMapRef.Name) == 0 {
 		return ""
 	}
@@ -138,6 +152,8 @@ func (sd *configSyncData) addIDPConfigMap(index int, configMapRef configv1.Confi
 	return data.path
 }
 func (sd *configSyncData) addTemplateSecret(secretRef configv1.SecretNameReference, field, key string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(secretRef.Name) == 0 {
@@ -150,9 +166,13 @@ func (sd *configSyncData) addTemplateSecret(secretRef configv1.SecretNameReferen
 func getIDPName(i int, field string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s%d-%s", userConfigPrefixIDP, i, field)
 }
 func getIDPPath(i int, resource, dest string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fmt.Sprintf("%s/%d/%s/%s", userConfigPathPrefixIDP, i, resource, dest)
@@ -160,14 +180,20 @@ func getIDPPath(i int, resource, dest string) string {
 func getTemplateName(field string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return userConfigPrefixTemplate + field
 }
 func getTemplatePath(resource, dest string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s/%s/%s", userConfigPathPrefixTemplate, resource, dest)
 }
 func syncOrDie(syncFunc func(dest, src resourcesynccontroller.ResourceLocation) error, dest, src string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ns := userConfigNamespace
@@ -181,11 +207,15 @@ func syncOrDie(syncFunc func(dest, src resourcesynccontroller.ResourceLocation) 
 func secretVolume(path, name, key string) (corev1.Volume, corev1.VolumeMount, string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data := volume{name: name, configmap: false, path: path, keys: []string{key}}
 	vol, mount := data.split()
 	return vol, mount, mount.MountPath + "/" + key
 }
 func configMapVolume(path, name, key string) (corev1.Volume, corev1.VolumeMount, string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data := volume{name: name, configmap: true, path: path, keys: []string{key}}

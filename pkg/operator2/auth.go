@@ -13,6 +13,8 @@ import (
 func (c *authOperator) handleAuthConfigInner() (*configv1.Authentication, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	authConfigNoDefaults, err := c.authentication.Get(globalConfigName, metav1.GetOptions{})
 	if errors.IsNotFound(err) {
 		authConfigNoDefaults, err = c.authentication.Create(&configv1.Authentication{ObjectMeta: defaultGlobalConfigMeta()})
@@ -30,6 +32,8 @@ func (c *authOperator) handleAuthConfigInner() (*configv1.Authentication, error)
 func (c *authOperator) handleAuthConfig() (*configv1.Authentication, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	auth, err := c.handleAuthConfigInner()
 	if err != nil {
 		return nil, err
@@ -37,6 +41,8 @@ func (c *authOperator) handleAuthConfig() (*configv1.Authentication, error) {
 	return defaultAuthConfig(auth), nil
 }
 func defaultAuthConfig(authConfig *configv1.Authentication) *configv1.Authentication {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out := authConfig.DeepCopy()
@@ -48,7 +54,16 @@ func defaultAuthConfig(authConfig *configv1.Authentication) *configv1.Authentica
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

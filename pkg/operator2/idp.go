@@ -36,6 +36,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	utilruntime.Must(osinv1.Install(scheme))
 }
 
@@ -46,6 +48,8 @@ type idpData struct {
 }
 
 func (c *authOperator) convertProviderConfigToIDPData(providerConfig *configv1.IdentityProviderConfig, syncData *configSyncData, i int) (*idpData, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const missingProviderFmt string = "type %s was specified, but its configuration is missing"
@@ -126,6 +130,8 @@ func (c *authOperator) convertProviderConfigToIDPData(providerConfig *configv1.I
 func (c *authOperator) discoverOpenIDURLs(issuer, key string, ca configv1.ConfigMapNameReference, fallbackURLs configv1.OpenIDURLs) (*osinv1.OpenIDURLs, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(issuer) == 0 {
 		return &osinv1.OpenIDURLs{Authorize: fallbackURLs.Authorize, Token: fallbackURLs.Token, UserInfo: fallbackURLs.UserInfo}, nil
 	}
@@ -164,6 +170,8 @@ func (c *authOperator) discoverOpenIDURLs(issuer, key string, ca configv1.Config
 func (c *authOperator) transportForCARef(ca configv1.ConfigMapNameReference, key string) (http.RoundTripper, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ca.Name) == 0 {
 		return transportFor(nil, nil, nil)
 	}
@@ -190,6 +198,8 @@ type openIDProviderJSON struct {
 func isValidURL(rawurl string, optional bool) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(rawurl) == 0 {
 		return optional
 	}
@@ -202,9 +212,13 @@ func isValidURL(rawurl string, optional bool) bool {
 func createFileStringSource(filepath string) configv1.StringSource {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return configv1.StringSource{StringSourceSpec: configv1.StringSourceSpec{File: filepath}}
 }
 func encodeOrDie(obj runtime.Object) []byte {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bytes, err := runtime.Encode(encoder, obj)

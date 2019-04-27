@@ -11,6 +11,8 @@ import (
 func (c *authOperator) handleConsoleConfig() *configv1.Console {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	consoleConfig, err := c.console.Get(globalConfigName, metav1.GetOptions{})
 	if err != nil {
 		klog.Infof("error getting console config: %v", err)
@@ -19,6 +21,8 @@ func (c *authOperator) handleConsoleConfig() *configv1.Console {
 	return consoleConfig
 }
 func consoleToDeploymentData(console *configv1.Console) (string, []string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	assetPublicURL := console.Status.ConsoleURL

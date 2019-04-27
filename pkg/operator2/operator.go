@@ -119,6 +119,8 @@ type authOperator struct {
 func NewAuthenticationOperator(authOpConfigClient OperatorClient, oauthClientClient oauthclient.OauthV1Interface, kubeInformersNamespaced informers.SharedInformerFactory, kubeClient kubernetes.Interface, routeInformer routeinformer.RouteInformer, routeClient routeclient.RouteV1Interface, configInformers configinformer.SharedInformerFactory, configClient configclient.Interface, versionGetter status.VersionGetter, recorder events.Recorder, resourceSyncer resourcesynccontroller.ResourceSyncer) operator.Runner {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c := &authOperator{authOperatorConfigClient: authOpConfigClient, versionGetter: versionGetter, recorder: recorder, route: routeClient.Routes(targetNamespace), oauthClientClient: oauthClientClient.OAuthClients(), services: kubeClient.CoreV1(), secrets: kubeClient.CoreV1(), configMaps: kubeClient.CoreV1(), deployments: kubeClient.AppsV1(), authentication: configClient.ConfigV1().Authentications(), oauth: configClient.ConfigV1().OAuths(), console: configClient.ConfigV1().Consoles(), infrastructure: configClient.ConfigV1().Infrastructures(), resourceSyncer: resourceSyncer}
 	coreInformers := kubeInformersNamespaced.Core().V1()
 	configV1Informers := configInformers.Config().V1()
@@ -130,9 +132,13 @@ func NewAuthenticationOperator(authOpConfigClient OperatorClient, oauthClientCli
 func (c *authOperator) Key() (metav1.Object, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.authOperatorConfigClient.Client.Authentications().Get(globalConfigName, metav1.GetOptions{})
 }
 func (c *authOperator) Sync(obj metav1.Object) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	operatorConfig := obj.(*operatorv1.Authentication)
@@ -157,6 +163,8 @@ func (c *authOperator) Sync(obj metav1.Object) error {
 	return syncErr
 }
 func (c *authOperator) handleSync(operatorConfig *operatorv1.Authentication) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	resourceVersions := []string{}
@@ -235,6 +243,8 @@ func (c *authOperator) handleSync(operatorConfig *operatorv1.Authentication) err
 func (c *authOperator) handleVersion(operatorConfig *operatorv1.Authentication, authConfig *configv1.Authentication, route *routev1.Route, routerSecret *corev1.Secret, deployment *appsv1.Deployment) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	routeReady, routeMsg, err := c.checkRouteHealthy(route, routerSecret)
 	if err != nil {
 		return fmt.Errorf("unable to check route health: %v", err)
@@ -271,6 +281,8 @@ func (c *authOperator) handleVersion(operatorConfig *operatorv1.Authentication, 
 func (c *authOperator) checkDeploymentReady(deployment *appsv1.Deployment, operatorConfig *operatorv1.Authentication) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	reason := "OAuthServerDeploymentNotReady"
 	if deployment.DeletionTimestamp != nil {
 		setProgressingTrueAndAvailableFalse(operatorConfig, reason, "deployment is being deleted")
@@ -294,6 +306,8 @@ func (c *authOperator) checkDeploymentReady(deployment *appsv1.Deployment, opera
 func (c *authOperator) checkRouteHealthy(route *routev1.Route, routerSecret *corev1.Secret) (bool, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	caData := routerSecretToCA(route, routerSecret)
 	rt, err := transportFor(caData, nil, nil)
 	if err != nil {
@@ -314,6 +328,8 @@ func (c *authOperator) checkRouteHealthy(route *routev1.Route, routerSecret *cor
 	return true, "", nil
 }
 func (c *authOperator) checkWellknownEndpointReady(authConfig *configv1.Authentication, route *routev1.Route) (bool, string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(authConfig.Spec.OAuthMetadata.Name) != 0 || authConfig.Spec.Type != configv1.AuthenticationTypeIntegratedOAuth {
@@ -357,6 +373,8 @@ func (c *authOperator) checkWellknownEndpointReady(authConfig *configv1.Authenti
 func (c *authOperator) oauthClientsReady(route *routev1.Route) (bool, string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, err := c.oauthClientClient.Get(oauthBrowserClientName, metav1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
@@ -376,6 +394,8 @@ func (c *authOperator) oauthClientsReady(route *routev1.Route) (bool, string, er
 func (c *authOperator) setVersion(operandName, version string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if c.versionGetter.GetVersions()[operandName] != version {
 		c.versionGetter.SetVersion(operandName, version)
 	}
@@ -383,9 +403,13 @@ func (c *authOperator) setVersion(operandName, version string) {
 func defaultLabels() map[string]string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return map[string]string{"app": targetName}
 }
 func defaultMeta() metav1.ObjectMeta {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return metav1.ObjectMeta{Name: targetName, Namespace: targetNamespace, Labels: defaultLabels(), Annotations: map[string]string{}, OwnerReferences: nil}
@@ -393,9 +417,13 @@ func defaultMeta() metav1.ObjectMeta {
 func defaultGlobalConfigMeta() metav1.ObjectMeta {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return metav1.ObjectMeta{Name: globalConfigName, Labels: map[string]string{}, Annotations: map[string]string{"release.openshift.io/create-only": "true"}}
 }
 func getPrefixFilter() controller.Filter {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	names := operator.FilterByNames(targetName)

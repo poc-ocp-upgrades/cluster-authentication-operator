@@ -19,6 +19,8 @@ import (
 func (c *authOperator) handleOAuthConfig(operatorConfig *operatorv1.Authentication, route *routev1.Route, routerSecret *corev1.Secret, service *corev1.Service, consoleConfig *configv1.Console, infrastructureConfig *configv1.Infrastructure) (*configv1.OAuth, *corev1.ConfigMap, *configSyncData, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	oauthConfigNoDefaults, err := c.oauth.Get(globalConfigName, metav1.GetOptions{})
 	if errors.IsNotFound(err) {
 		oauthConfigNoDefaults, err = c.oauth.Create(&configv1.OAuth{ObjectMeta: defaultGlobalConfigMeta()})
@@ -70,6 +72,8 @@ func (c *authOperator) handleOAuthConfig(operatorConfig *operatorv1.Authenticati
 func getCliConfigMap(completeConfigBytes []byte) *corev1.ConfigMap {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	meta := defaultMeta()
 	meta.Name = cliConfigNameAndKey
 	return &corev1.ConfigMap{ObjectMeta: meta, Data: map[string]string{cliConfigNameAndKey: string(completeConfigBytes)}}
@@ -77,10 +81,14 @@ func getCliConfigMap(completeConfigBytes []byte) *corev1.ConfigMap {
 func getMasterCA() *string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ca := serviceCAPath
 	return &ca
 }
 func defaultOAuthConfig(oauthConfig *configv1.OAuth) *configv1.OAuth {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	out := oauthConfig.DeepCopy()

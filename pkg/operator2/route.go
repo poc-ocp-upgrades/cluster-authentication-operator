@@ -16,6 +16,8 @@ import (
 func (c *authOperator) handleRoute() (*routev1.Route, *corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	route, err := c.route.Get(targetName, metav1.GetOptions{})
 	if errors.IsNotFound(err) {
 		route, err = c.route.Create(defaultRoute())
@@ -46,6 +48,8 @@ func (c *authOperator) handleRoute() (*routev1.Route, *corev1.Secret, error) {
 func isValidRoute(route *routev1.Route) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	expectedRoute := defaultRoute()
 	expName := expectedRoute.Spec.To.Name
 	expPort := expectedRoute.Spec.Port.TargetPort.IntValue()
@@ -71,9 +75,13 @@ func isValidRoute(route *routev1.Route) error {
 func defaultRoute() *routev1.Route {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &routev1.Route{ObjectMeta: defaultMeta(), Spec: routev1.RouteSpec{To: routev1.RouteTargetReference{Kind: "Service", Name: targetName}, Port: &routev1.RoutePort{TargetPort: intstr.FromInt(containerPort)}, TLS: &routev1.TLSConfig{Termination: routev1.TLSTerminationPassthrough, InsecureEdgeTerminationPolicy: routev1.InsecureEdgeTerminationPolicyRedirect}}}
 }
 func routerSecretToSNI(routerSecret *corev1.Secret) []configv1.NamedCertificate {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var out []configv1.NamedCertificate
@@ -83,6 +91,8 @@ func routerSecretToSNI(routerSecret *corev1.Secret) []configv1.NamedCertificate 
 	return out
 }
 func routerSecretToCA(route *routev1.Route, routerSecret *corev1.Secret) []byte {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

@@ -9,6 +9,8 @@ import (
 func TestRandomString(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for size := 0; size < 1<<10+1; size++ {
 		size := size
 		t.Run(strconv.FormatInt(int64(size), 10), func(t *testing.T) {
@@ -20,6 +22,8 @@ func TestRandomString(t *testing.T) {
 	}
 }
 func TestIsValidSessionSecret(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := newSessionSecretsJSON()
@@ -40,6 +44,8 @@ func TestIsValidSessionSecret(t *testing.T) {
 	}
 }
 func secret(sessionSecret []byte) *v1.Secret {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &v1.Secret{ObjectMeta: defaultMeta(), Data: map[string][]byte{sessionNameAndKey: sessionSecret}}

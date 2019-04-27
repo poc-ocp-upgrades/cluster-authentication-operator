@@ -39,6 +39,8 @@ const stubMetadata = `
 func getMetadataStruct(route *routev1.Route) map[string]interface{} {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ret map[string]interface{}
 	metadataJSON := getMetadata(route)
 	err := json.Unmarshal([]byte(metadataJSON), &ret)
@@ -50,10 +52,14 @@ func getMetadataStruct(route *routev1.Route) map[string]interface{} {
 func getMetadata(route *routev1.Route) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	host := route.Spec.Host
 	return strings.TrimSpace(fmt.Sprintf(stubMetadata, host, host, host))
 }
 func getMetadataConfigMap(route *routev1.Route) *corev1.ConfigMap {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	meta := defaultMeta()

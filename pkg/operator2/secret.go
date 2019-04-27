@@ -15,6 +15,8 @@ import (
 func (c *authOperator) expectedSessionSecret() (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	secret, err := c.secrets.Secrets(targetNamespace).Get(sessionNameAndKey, metav1.GetOptions{})
 	if err != nil || !isValidSessionSecret(secret) {
 		klog.V(4).Infof("failed to get secret %s: %v", sessionNameAndKey, err)
@@ -27,6 +29,8 @@ func (c *authOperator) expectedSessionSecret() (*corev1.Secret, error) {
 	return secret, nil
 }
 func isValidSessionSecret(secret *corev1.Secret) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var sessionSecretsBytes [][]byte
@@ -53,6 +57,8 @@ func isValidSessionSecret(secret *corev1.Secret) bool {
 func randomSessionSecret() (*corev1.Secret, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	skey, err := newSessionSecretsJSON()
 	if err != nil {
 		return nil, err
@@ -62,6 +68,8 @@ func randomSessionSecret() (*corev1.Secret, error) {
 	return &corev1.Secret{ObjectMeta: meta, Data: map[string][]byte{sessionNameAndKey: skey}}, nil
 }
 func newSessionSecretsJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (
@@ -78,6 +86,8 @@ func newSessionSecretsJSON() ([]byte, error) {
 func randomBytes(size int) []byte {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := make([]byte, size)
 	if _, err := rand.Read(b); err != nil {
 		panic(err)
@@ -85,6 +95,8 @@ func randomBytes(size int) []byte {
 	return b
 }
 func randomString(size int) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b64size := base64.RawURLEncoding.DecodedLen(size) + 1

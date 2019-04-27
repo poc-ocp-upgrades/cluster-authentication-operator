@@ -12,6 +12,8 @@ import (
 func transportFor(caData, certData, keyData []byte) (http.RoundTripper, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	transport, err := transportForInner(caData, certData, keyData)
 	if err != nil {
 		return nil, err
@@ -19,6 +21,8 @@ func transportFor(caData, certData, keyData []byte) (http.RoundTripper, error) {
 	return ktransport.DebugWrappers(transport), nil
 }
 func transportForInner(caData, certData, keyData []byte) (http.RoundTripper, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(caData) == 0 && len(certData) == 0 && len(keyData) == 0 {

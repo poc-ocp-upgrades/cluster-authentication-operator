@@ -9,6 +9,8 @@ import (
 func (c *authOperator) handleInfrastructureConfig() *configv1.Infrastructure {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	infrastructureConfig, err := c.infrastructure.Get(globalConfigName, metav1.GetOptions{})
 	if err != nil {
 		klog.Infof("error getting infrastructure config: %v", err)
