@@ -4,9 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
-
 	corev1 "k8s.io/api/core/v1"
-
 	configv1 "github.com/openshift/api/config/v1"
 	routev1 "github.com/openshift/api/route/v1"
 )
@@ -39,32 +37,26 @@ const stubMetadata = `
 `
 
 func getMetadataStruct(route *routev1.Route) map[string]interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ret map[string]interface{}
-
 	metadataJSON := getMetadata(route)
 	err := json.Unmarshal([]byte(metadataJSON), &ret)
 	if err != nil {
-		// should never happen unless the static metadata is broken
 		panic(err)
 	}
-
 	return ret
 }
-
-// TODO: the code in this file does not reflect situations where the
-// OAuthMetadata field of the Authentication object is set
 func getMetadata(route *routev1.Route) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	host := route.Spec.Host
 	return strings.TrimSpace(fmt.Sprintf(stubMetadata, host, host, host))
 }
-
 func getMetadataConfigMap(route *routev1.Route) *corev1.ConfigMap {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	meta := defaultMeta()
 	meta.Name = oauthMetadataName
-	return &corev1.ConfigMap{
-		ObjectMeta: meta,
-		Data: map[string]string{
-			configv1.OAuthMetadataKey: getMetadata(route),
-		},
-	}
+	return &corev1.ConfigMap{ObjectMeta: meta, Data: map[string]string{configv1.OAuthMetadataKey: getMetadata(route)}}
 }
