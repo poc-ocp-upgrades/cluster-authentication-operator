@@ -589,7 +589,7 @@ var testCases = []testCase{
 		"omit empty does not propagate",
 		&NoOmits{
 			No: []NoOmit{
-				NoOmit{},
+				{},
 			},
 			S:  S{},
 			Ss: S{},

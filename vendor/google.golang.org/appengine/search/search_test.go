@@ -711,7 +711,7 @@ func TestPutMultiTooManyDocs(t *testing.T) {
 	})
 
 	srcs := make([]interface{}, 201)
-	for i, _ := range srcs {
+	for i := range srcs {
 		srcs[i] = &searchFields
 	}
 

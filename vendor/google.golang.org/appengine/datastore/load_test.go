@@ -94,13 +94,13 @@ func TestLoadEntityNestedLegacy(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameX,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameADotI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
@@ -118,7 +118,7 @@ func TestLoadEntityNestedLegacy(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameAADotII,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
@@ -135,13 +135,13 @@ func TestLoadEntityNestedLegacy(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameX,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
@@ -159,7 +159,7 @@ func TestLoadEntityNestedLegacy(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameADotBDotB,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
@@ -178,25 +178,25 @@ func TestLoadEntityNestedLegacy(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameS,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameSS,
 						Value: &pb.PropertyValue{
 							StringValue: &testString3,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameX,
 						Value: &pb.PropertyValue{
 							StringValue: &testString3,
@@ -268,7 +268,7 @@ func init() {
 	simpleEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", incompleteKey),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name: &fieldNameI,
 				Value: &pb.PropertyValue{
 					Int64Value: &testInt64,
@@ -291,7 +291,7 @@ func init() {
 	nestedSimpleEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", incompleteKey),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name:    &fieldNameA,
 				Meaning: &entityProtoMeaning,
 				Value: &pb.PropertyValue{
@@ -299,7 +299,7 @@ func init() {
 				},
 				Multiple: &FALSE,
 			},
-			&pb.Property{
+			{
 				Name:    &fieldNameI,
 				Meaning: &entityProtoMeaning,
 				Value: &pb.PropertyValue{
@@ -320,14 +320,14 @@ func init() {
 	simpleTwoFieldsEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", incompleteKey),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name: &fieldNameS,
 				Value: &pb.PropertyValue{
 					StringValue: &testString2,
 				},
 				Multiple: &FALSE,
 			},
-			&pb.Property{
+			{
 				Name: &fieldNameSS,
 				Value: &pb.PropertyValue{
 					StringValue: &testString3,
@@ -347,7 +347,7 @@ func init() {
 	simpleWithTagEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", incompleteKey),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name: &fieldNameII,
 				Value: &pb.PropertyValue{
 					Int64Value: &testInt64,
@@ -369,7 +369,7 @@ func init() {
 	bDotBEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", incompleteKey),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name: &fieldNameBDotB,
 				Value: &pb.PropertyValue{
 					StringValue: &testString2,
@@ -393,14 +393,14 @@ func init() {
 	withKeyEntityProtob, err := proto.Marshal(&pb.EntityProto{
 		Key: keyToProto("", testKey1a),
 		Property: []*pb.Property{
-			&pb.Property{
+			{
 				Name: &fieldNameX,
 				Value: &pb.PropertyValue{
 					StringValue: &testString3,
 				},
 				Multiple: &FALSE,
 			},
-			&pb.Property{
+			{
 				Name: &fieldNameI,
 				Value: &pb.PropertyValue{
 					Int64Value: &testInt64,
@@ -428,14 +428,14 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name:    &fieldNameA,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{
 							StringValue: &simpleEntityProto,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
@@ -453,7 +453,7 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name:    &fieldNameAA,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{
@@ -471,21 +471,21 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name:    &fieldNameAA,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{
 							StringValue: &nestedSimpleEntityProto,
 						},
 					},
-					&pb.Property{
+					{
 						Name:    &fieldNameA,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{
 							StringValue: &simpleTwoFieldsEntityProto,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameS,
 						Value: &pb.PropertyValue{
 							StringValue: &testString3,
@@ -507,13 +507,13 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameX,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
@@ -531,7 +531,7 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name:     &fieldNameA,
 						Meaning:  &entityProtoMeaning,
 						Multiple: &TRUE,
@@ -539,7 +539,7 @@ func TestLoadEntityNested(t *testing.T) {
 							StringValue: &simpleEntityProto,
 						},
 					},
-					&pb.Property{
+					{
 						Name:     &fieldNameA,
 						Meaning:  &entityProtoMeaning,
 						Multiple: &TRUE,
@@ -550,7 +550,7 @@ func TestLoadEntityNested(t *testing.T) {
 				},
 			},
 			&NestedSliceOfSimple{
-				A: []Simple{Simple{I: testInt64}, Simple{I: testInt64}},
+				A: []Simple{{I: testInt64}, {I: testInt64}},
 			},
 		},
 		{
@@ -558,25 +558,25 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameI,
 						Value: &pb.PropertyValue{
 							Int64Value: &testInt64,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameS,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameSS,
 						Value: &pb.PropertyValue{
 							StringValue: &testString3,
 						},
 					},
-					&pb.Property{
+					{
 						Name: &fieldNameX,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
@@ -595,7 +595,7 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name:    &fieldNameA,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{
@@ -615,13 +615,13 @@ func TestLoadEntityNested(t *testing.T) {
 			&pb.EntityProto{
 				Key: keyToProto("some-app-id", testKey0),
 				Property: []*pb.Property{
-					&pb.Property{
+					{
 						Name: &fieldNameY,
 						Value: &pb.PropertyValue{
 							StringValue: &testString2,
 						},
 					},
-					&pb.Property{
+					{
 						Name:    &fieldNameN,
 						Meaning: &entityProtoMeaning,
 						Value: &pb.PropertyValue{

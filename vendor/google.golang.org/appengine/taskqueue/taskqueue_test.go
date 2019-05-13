@@ -124,14 +124,14 @@ func TestParseRequestHeaders(t *testing.T) {
 	}{
 		{
 			Header: map[string][]string{
-				"X-Appengine-Queuename":            []string{"foo"},
-				"X-Appengine-Taskname":             []string{"bar"},
-				"X-Appengine-Taskretrycount":       []string{"4294967297"}, // 2^32 + 1
-				"X-Appengine-Taskexecutioncount":   []string{"4294967298"}, // 2^32 + 2
-				"X-Appengine-Tasketa":              []string{"1500000000"},
-				"X-Appengine-Taskpreviousresponse": []string{"404"},
-				"X-Appengine-Taskretryreason":      []string{"baz"},
-				"X-Appengine-Failfast":             []string{"yes"},
+				"X-Appengine-Queuename":            {"foo"},
+				"X-Appengine-Taskname":             {"bar"},
+				"X-Appengine-Taskretrycount":       {"4294967297"}, // 2^32 + 1
+				"X-Appengine-Taskexecutioncount":   {"4294967298"}, // 2^32 + 2
+				"X-Appengine-Tasketa":              {"1500000000"},
+				"X-Appengine-Taskpreviousresponse": {"404"},
+				"X-Appengine-Taskretryreason":      {"baz"},
+				"X-Appengine-Failfast":             {"yes"},
 			},
 			Want: RequestHeaders{
 				QueueName:            "foo",
